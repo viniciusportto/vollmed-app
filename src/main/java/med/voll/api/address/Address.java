@@ -19,4 +19,13 @@ public class Address {
     private String city;
     private String uf;
 
+    public Address(AddressData data) {
+        this.street = data.street();
+        this.neighborhood = data.neighborhood();
+        this.zipCode = data.zipCode();
+        this.uf = data.uf();
+        this.city = data.city();
+        this.number = data.number();
+        this.complement = data.complement();
+    }
 }
