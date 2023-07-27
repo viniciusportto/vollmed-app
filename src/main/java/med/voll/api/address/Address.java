@@ -13,7 +13,7 @@ public class Address {
 
     private String street;
     private String neighborhood;
-    private String zipCode;
+    private String zipcode;
     private String number;
     private String complement;
     private String city;
@@ -22,7 +22,7 @@ public class Address {
     public Address(AddressData data) {
         this.street = data.street();
         this.neighborhood = data.neighborhood();
-        this.zipCode = data.zipCode();
+        this.zipcode = data.zipcode();
         this.uf = data.uf();
         this.city = data.city();
         this.number = data.number();
