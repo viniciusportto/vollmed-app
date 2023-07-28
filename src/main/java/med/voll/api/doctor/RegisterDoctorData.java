@@ -29,6 +29,9 @@ public record RegisterDoctorData(
 
         @NotNull
         @Valid
-        AddressData address) {
+        AddressData address,
+
+        String lastname)
+{
 
 }
