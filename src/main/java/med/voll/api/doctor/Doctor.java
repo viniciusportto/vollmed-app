@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.address.Address;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Table(name = "doctors")
 @Entity(name = "Doctors")
@@ -21,7 +24,6 @@ public class Doctor {
     private String email;
     private String crm;
     private String phone;
-    private String lastname;
 
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
@@ -36,7 +38,7 @@ public class Doctor {
         this.crm = data.crm();
         this.specialty = data.specialty();
         this.address = new Address(data.address());
-        this.lastname = data.lastname();
-
     }
+
+
 }
