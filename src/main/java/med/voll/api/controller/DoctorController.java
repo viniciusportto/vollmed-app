@@ -34,6 +34,12 @@ public class DoctorController {
         return repository.findAll(pagination).map(DataListingDoctor::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid RegisterDoctorData data){
+
+    }
+
 
 
 }
