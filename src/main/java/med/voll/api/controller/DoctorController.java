@@ -1,10 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.doctor.DataListingDoctor;
-import med.voll.api.doctor.Doctor;
-import med.voll.api.doctor.DoctorRepository;
-import med.voll.api.doctor.RegisterDoctorData;
+import med.voll.api.doctor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +33,9 @@ public class DoctorController {
 
     @PutMapping
     @Transactional
-    public void update(@RequestBody @Valid RegisterDoctorData data){
+    public void update(@RequestBody @Valid DataUpdateDoctor datas){
+        var doctor = repository.getReferenceById(datas.id());
+        doctor.updateInformations(datas);
 
     }
 

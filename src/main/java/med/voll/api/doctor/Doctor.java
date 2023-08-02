@@ -41,4 +41,18 @@ public class Doctor {
     }
 
 
+    public void updateInformations(DataUpdateDoctor datas) {
+        if(datas.name() != null) {
+            this.name = datas.name();
+        }
+        if(datas.phone() != null){
+            this.phone = datas.phone();
+        }
+        if(datas.email() != null) {
+            this.email = datas.email();
+        }
+        if (datas.address() != null){
+            this.address.updateInformations(datas.address());
+        }
+    }
 }
