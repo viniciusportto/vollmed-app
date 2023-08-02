@@ -6,9 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.address.Address;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 
 @Table(name = "doctors")
 @Entity(name = "Doctors")
