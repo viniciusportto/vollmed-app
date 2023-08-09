@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -20,10 +21,13 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity register(@RequestBody @Valid RegisterDoctorData datas){
-        repository.save(new Doctor(datas));
+    public ResponseEntity register(@RequestBody @Valid RegisterDoctorData datas, UriComponentsBuilder uriBuilder){
+        var doctor = new Doctor(datas);
+        repository.save(doctor);
 
-        return ResponseEntity.noContent().build();
+        var uri = uriBuilder.path("/doctors/{id}").buildAndExpand(doctor.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new datasDetailingDoctor(doctor));
 
     }
     //created get method and list of doctors
