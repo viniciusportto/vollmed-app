@@ -1,6 +1,5 @@
 package med.voll.api.doctor;
 
-import com.sun.jdi.event.StepEvent;
 import med.voll.api.address.Address;
 
 public record datasDetailingDoctor(Long id, String name, String email, String crm, String phone, Specialty specialty, Address address) {

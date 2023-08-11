@@ -6,6 +6,6 @@ public enum Specialty {
     ORTHOPEDICS,
     CARDIOLOGY,
     GYNECOLOGY,
-    DERMATOLOGY;
+    DERMATOLOGY
 
 }

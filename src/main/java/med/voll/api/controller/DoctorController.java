@@ -21,7 +21,7 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity register(@RequestBody @Valid RegisterDoctorData datas, UriComponentsBuilder uriBuilder){
+    public ResponseEntity <datasDetailingDoctor> register(@RequestBody @Valid RegisterDoctorData datas, UriComponentsBuilder uriBuilder){
         var doctor = new Doctor(datas);
         repository.save(doctor);
 
@@ -32,14 +32,14 @@ public class DoctorController {
     }
     //created get method and list of doctors
     @GetMapping
-    public ResponseEntity <Page<DataListingDoctor>>lister(@PageableDefault(size = 10, page = 0, sort = {"name"}) Pageable pagination){
+    public ResponseEntity <Page<DataListingDoctor>>lister(@PageableDefault( sort = {"name"}) Pageable pagination){
         var page = repository.findAllByActiveTrue(pagination).map(DataListingDoctor::new);
         return ResponseEntity.ok(page);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity update(@RequestBody @Valid DataUpdateDoctor datas){
+    public ResponseEntity<datasDetailingDoctor> update(@RequestBody @Valid DataUpdateDoctor datas){
         var doctor = repository.getReferenceById(datas.id());
         doctor.updateInformations(datas);
 
@@ -48,7 +48,7 @@ public class DoctorController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         var doctor = repository.getReferenceById(id);
         doctor.delete();
 
@@ -56,7 +56,7 @@ public class DoctorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detail(@PathVariable Long id){
+    public ResponseEntity<datasDetailingDoctor> detail(@PathVariable Long id){
         var doctor = repository.getReferenceById(id);
         return ResponseEntity.ok(new datasDetailingDoctor(doctor));
     }
