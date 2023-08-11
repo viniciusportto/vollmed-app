@@ -1,9 +1,9 @@
-package med.voll.api.patient;
+package med.voll.api.domain.patient;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PacienteRepository extends JpaRepository<Pacient, Long> {
+public interface PacientRepository extends JpaRepository<Pacient, Long> {
     Page<Pacient> findAllByActiveTrue(Pageable Pageable);
 }
