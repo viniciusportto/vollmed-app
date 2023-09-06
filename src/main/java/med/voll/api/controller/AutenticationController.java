@@ -1,8 +1,8 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.infra.security.DatasTokenJWT;
-import med.voll.api.domain.infra.security.TokenService;
+import med.voll.api.infra.security.DatasTokenJWT;
+import med.voll.api.infra.security.TokenService;
 import med.voll.api.domain.user.DatasAutentication;
 import med.voll.api.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;

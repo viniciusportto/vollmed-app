@@ -1,4 +1,4 @@
-package med.voll.api.domain.infra.security;
+package med.voll.api.infra.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -37,7 +37,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     private String retrieveToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorizatio");
+        var authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null) {
             return authorizationHeader.replace("Bearer ", "");
         }
