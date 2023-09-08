@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("pacients")
-public class PacientController {
+@RequestMapping("patients")
+public class PatientController {
 
     @Autowired
     private PatientRepository repository;
@@ -30,14 +30,14 @@ public class PacientController {
     @PutMapping
     @Transactional
     public void update(@RequestBody @Valid PatientUpdateData datas) {
-        var pacient = repository.getReferenceById(datas.id());
-        pacient.informationUpdate(datas);
+        var patient = repository.getReferenceById(datas.id());
+        patient.informationUpdate(datas);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {
-        var pacient = repository.getReferenceById(id);
-        pacient.delete();
+        var patient = repository.getReferenceById(id);
+        patient.delete();
     }
 }
