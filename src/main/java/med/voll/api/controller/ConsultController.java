@@ -17,7 +17,7 @@ public class ConsultController {
     @Transactional
     public ResponseEntity schedule(@RequestBody @Valid AppointmentSchedulingData datas){
         System.out.println(datas);
-        return ResponseEntity.ok(new AppointmentSchedulingData(null, null, null));
+        return ResponseEntity.ok(new AppointmentSchedulingData(null, null, null, null));
     }
 
 }

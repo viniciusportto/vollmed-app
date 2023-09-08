@@ -7,13 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.address.Address;
 
-@Table(name = "pacients")
-@Entity(name = "Pacient")
+@Table(name = "patients")
+@Entity(name = "Patient")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Pacient {
+public class Patient {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,7 @@ public class Pacient {
 
     private Boolean active;
 
-    public Pacient(PatientRegistrationData datas) {
+    public Patient(PatientRegistrationData datas) {
         this.active = true;
         this.name = datas.name();
         this.email = datas.email();

@@ -2,8 +2,8 @@ package med.voll.api.domain.patient;
 
 public record DataListPatient(Long id, String name, String email, String cpf) {
 
-    public DataListPatient(Pacient pacient) {
-        this(pacient.getId(), pacient.getName(), pacient.getEmail(), pacient.getCpf());
+    public DataListPatient(Patient patient) {
+        this(patient.getId(), patient.getName(), patient.getEmail(), patient.getCpf());
     }
 
 }

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class PacientController {
 
     @Autowired
-    private PacientRepository repository;
+    private PatientRepository repository;
 
     @PostMapping
     @Transactional
     public void register(@RequestBody @Valid PatientRegistrationData datas) {
-        repository.save(new Pacient(datas));
+        repository.save(new Patient(datas));
     }
 
     @GetMapping
