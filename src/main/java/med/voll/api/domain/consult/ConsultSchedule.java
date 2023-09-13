@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AppointmentSchedule {
+public class ConsultSchedule {
 
     @Autowired
     private ConsultRepository consultRepository;
@@ -19,7 +19,7 @@ public class AppointmentSchedule {
     @Autowired
     private PatientRepository patientRepository;
 
-    public void toSchedule(AppointmentSchedulingData datas){
+    public void toSchedule(ConsultSchedulingData datas){
         if(!patientRepository.existsById(datas.idPatient())){
             throw new IdValidationException("Patient ID doesn't exist!");
         }
@@ -30,11 +30,11 @@ public class AppointmentSchedule {
 
         var patient = patientRepository.getReferenceById(datas.idPatient());
         var doctor = choiceDoctor(datas);
-        var consult = new Consult(null, doctor, patient, datas.date());
+        var consult = new Consult(null, doctor, patient, datas.date(), null);
         consultRepository.save(consult);
     }
 
-    private Doctor choiceDoctor(AppointmentSchedulingData datas) {
+    private Doctor choiceDoctor(ConsultSchedulingData datas) {
         if(datas.idDoctor() != null){
             return doctorRepository.getReferenceById(datas.idDoctor());
         }
@@ -45,5 +45,13 @@ public class AppointmentSchedule {
         return doctorRepository.ChooseRandomDoctorAvailable(datas.specialty(),datas.date());
     }
 
+    public void cancel(DatasConsultCancel datas){
+        if(!consultRepository.existsById(datas.idConsult())){
+            throw new IdValidationException("Consult ID entered does not exist!");
+        }
+
+        var consult = consultRepository.getReferenceById(datas.idConsult());
+        consult.cancel(datas.motive());
+    }
 
 }

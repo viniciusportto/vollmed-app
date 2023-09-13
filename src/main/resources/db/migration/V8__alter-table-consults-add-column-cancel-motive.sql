@@ -1,0 +1,1 @@
+alter table consults add column cancel_motive varchar(100);

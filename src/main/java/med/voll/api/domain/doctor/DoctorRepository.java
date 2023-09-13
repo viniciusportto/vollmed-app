@@ -20,8 +20,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
             and
             d.id not in(
                 select c.doctor.id from Consult c
-                where 
-                c.date = :data
+                where
+                c.date = :date
             )
             order by rand()
             limit 1

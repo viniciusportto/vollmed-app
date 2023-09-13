@@ -33,4 +33,11 @@ public class Consult {
 
     private LocalDateTime date;
 
+    @Column(name = "cancel_motive")
+    @Enumerated(EnumType.STRING)
+    private CancelMotive cancelMotive;
+
+    public void cancel(CancelMotive motive) {
+        this.cancelMotive = motive;
+    }
 }
