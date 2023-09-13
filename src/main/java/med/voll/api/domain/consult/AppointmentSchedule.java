@@ -28,14 +28,21 @@ public class AppointmentSchedule {
             throw new IdValidationException("Doctor ID doesn't exist!");
         }
 
-        var patient = patientRepository.findById(datas.idPatient()).get();
+        var patient = patientRepository.getReferenceById(datas.idPatient());
         var doctor = choiceDoctor(datas);
         var consult = new Consult(null, doctor, patient, datas.date());
         consultRepository.save(consult);
     }
 
     private Doctor choiceDoctor(AppointmentSchedulingData datas) {
+        if(datas.idDoctor() != null){
+            return doctorRepository.getReferenceById(datas.idDoctor());
+        }
 
+        if(datas.specialty() == null){
+            throw new IdValidationException("Specialty is mandatory when a doctor is not chosen!");
+        }
+        return doctorRepository.ChooseRandomDoctorAvailable(datas.specialty(),datas.date());
     }
 
 
