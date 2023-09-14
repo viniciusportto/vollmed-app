@@ -7,10 +7,7 @@ import med.voll.api.domain.consult.DatasConsultCancel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("consults")
@@ -26,6 +23,8 @@ public class ConsultController {
         return ResponseEntity.ok(new ConsultSchedulingData(null, null, null, null));
     }
 
+    @DeleteMapping
+    @Transactional
     public ResponseEntity cancel(@RequestBody @Valid DatasConsultCancel datas){
         schedule.cancel(datas);
         return ResponseEntity.noContent().build();

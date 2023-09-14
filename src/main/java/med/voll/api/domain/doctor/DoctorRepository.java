@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
-    Page<Doctor> findAllByActiveTrue(Pageable pagination);
+    Page<Doctor>findAllByActiveTrue(Pageable pagination);
 
     @Query("""
             select d from Doctors d
@@ -27,4 +27,13 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
             limit 1
             """)
     Doctor ChooseRandomDoctorAvailable(Specialty specialty, LocalDateTime date);
+
+    @Query("""
+           select d.active
+           from Doctors d
+           where
+           d.id = :id
+            """)
+    Boolean findActiveById(Long idDoctor);
+
 }
