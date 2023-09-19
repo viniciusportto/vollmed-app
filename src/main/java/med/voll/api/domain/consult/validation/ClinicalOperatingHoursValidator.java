@@ -2,11 +2,13 @@ package med.voll.api.domain.consult.validation;
 
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultSchedulingData;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
 //validação de consulta apenas poderá ser agendada entre 7 e 18 horas e não pode ser agendada no domingo
-public class ClinicalOperatingHoursValidator {
+@Component
+public class ClinicalOperatingHoursValidator implements ValidatorScheduleConsult {
 
     public void validate(ConsultSchedulingData datas){
         var dataConsult = datas.date();

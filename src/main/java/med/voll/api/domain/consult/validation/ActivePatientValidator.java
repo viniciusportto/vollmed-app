@@ -3,8 +3,10 @@ package med.voll.api.domain.consult.validation;
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultSchedulingData;
 import med.voll.api.domain.patient.PatientRepository;
+import org.springframework.stereotype.Component;
 
-public class ActivePatientValidator {
+@Component
+public class ActivePatientValidator implements ValidatorScheduleConsult {
 
     private PatientRepository repository;
 

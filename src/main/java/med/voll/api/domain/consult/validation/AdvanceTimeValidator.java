@@ -2,12 +2,14 @@ package med.voll.api.domain.consult.validation;
 
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultSchedulingData;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 ///validação consulta deve ser agendada com 30 minutos de antecedência
-public class AdvanceTimeValidator {
+@Component
+public class AdvanceTimeValidator implements ValidatorScheduleConsult {
 
     public void validate(ConsultSchedulingData datas){
         var dateConsult = datas.date();

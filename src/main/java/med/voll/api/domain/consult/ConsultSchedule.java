@@ -1,11 +1,14 @@
 package med.voll.api.domain.consult;
 
 import med.voll.api.domain.IdValidationException;
+import med.voll.api.domain.consult.validation.ValidatorScheduleConsult;
 import med.voll.api.domain.doctor.Doctor;
 import med.voll.api.domain.doctor.DoctorRepository;
 import med.voll.api.domain.patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ConsultSchedule {
@@ -19,6 +22,9 @@ public class ConsultSchedule {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private List<ValidatorScheduleConsult> validators;
+
     public void toSchedule(ConsultSchedulingData datas){
         if(!patientRepository.existsById(datas.idPatient())){
             throw new IdValidationException("Patient ID doesn't exist!");
@@ -27,6 +33,8 @@ public class ConsultSchedule {
         if(datas.idDoctor() != null && !doctorRepository.existsById(datas.idDoctor())){
             throw new IdValidationException("Doctor ID doesn't exist!");
         }
+
+        validators.forEach(v -> v.validate(datas));
 
         var patient = patientRepository.getReferenceById(datas.idPatient());
         var doctor = choiceDoctor(datas);
