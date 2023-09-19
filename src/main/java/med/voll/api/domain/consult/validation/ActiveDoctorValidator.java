@@ -6,7 +6,7 @@ import med.voll.api.domain.doctor.DoctorRepository;
 
 public class ActiveDoctorValidator {
 
-    public DoctorRepository repository;
+    private DoctorRepository repository;
 
     public void validate(ConsultSchedulingData datas){
         //escolha do médico opcional
