@@ -28,7 +28,7 @@ public class Consult {
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente_id")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     private LocalDateTime date;

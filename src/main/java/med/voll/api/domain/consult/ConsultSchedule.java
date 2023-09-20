@@ -7,7 +7,7 @@ import med.voll.api.domain.doctor.DoctorRepository;
 import med.voll.api.domain.patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+// open-closed principle
 import java.util.List;
 
 @Service
@@ -25,7 +25,7 @@ public class ConsultSchedule {
     @Autowired
     private List<ValidatorScheduleConsult> validators;
 
-    public void toSchedule(ConsultSchedulingData datas){
+    public DataDetailedConsult toSchedule(ConsultSchedulingData datas){
         if(!patientRepository.existsById(datas.idPatient())){
             throw new IdValidationException("Patient ID doesn't exist!");
         }
@@ -38,8 +38,12 @@ public class ConsultSchedule {
 
         var patient = patientRepository.getReferenceById(datas.idPatient());
         var doctor = choiceDoctor(datas);
+        if (doctor == null){
+            throw new IdValidationException("There is no doctor available on this date");
+        }
         var consult = new Consult(null, doctor, patient, datas.date(), null);
         consultRepository.save(consult);
+        return new DataDetailedConsult(consult);
     }
 
     private Doctor choiceDoctor(ConsultSchedulingData datas) {

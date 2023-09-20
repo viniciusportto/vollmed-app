@@ -19,8 +19,8 @@ public class ConsultController {
     @PostMapping
     @Transactional
     public ResponseEntity schedule(@RequestBody @Valid ConsultSchedulingData datas){
-        schedule.toSchedule(datas);
-        return ResponseEntity.ok(new ConsultSchedulingData(null, null, null, null));
+        var dto = schedule.toSchedule(datas);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping

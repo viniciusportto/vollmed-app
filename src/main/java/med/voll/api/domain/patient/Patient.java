@@ -20,7 +20,7 @@ public class Patient {
     private String name;
     private String email;
 
-    private String telefone;
+    private String phone;
 
     private String cpf;
 
@@ -33,7 +33,7 @@ public class Patient {
         this.active = true;
         this.name = datas.name();
         this.email = datas.email();
-        this.telefone = datas.phone();
+        this.phone = datas.phone();
         this.cpf = datas.cpf();
         this.address = new Address(datas.address());
     }
@@ -43,7 +43,7 @@ public class Patient {
             this.name = datas.name();
         }
         if (datas.phone() != null) {
-            this.telefone = datas.phone();
+            this.phone = datas.phone();
         }
         if (datas.address() != null) {
             this.address.updateInformations(datas.address());

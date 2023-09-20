@@ -1,6 +1,7 @@
 package med.voll.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import med.voll.api.domain.IdValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,5 +27,12 @@ public class ErrorHandler {
             this(error.getField(), error.getDefaultMessage());
         }
     }
+
+    @ExceptionHandler(IdValidationException.class)
+    public ResponseEntity treatErrorRegraDeNegocio(IdValidationException ex){
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+
 
 }
