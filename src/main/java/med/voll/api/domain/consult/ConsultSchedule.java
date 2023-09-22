@@ -1,7 +1,8 @@
 package med.voll.api.domain.consult;
 
 import med.voll.api.domain.IdValidationException;
-import med.voll.api.domain.consult.validation.ValidatorScheduleConsult;
+import med.voll.api.domain.consult.validation.cancellation.ValidatorCancellationConsult;
+import med.voll.api.domain.consult.validation.scheduling.ValidatorScheduleConsult;
 import med.voll.api.domain.doctor.Doctor;
 import med.voll.api.domain.doctor.DoctorRepository;
 import med.voll.api.domain.patient.PatientRepository;
@@ -24,6 +25,9 @@ public class ConsultSchedule {
 
     @Autowired
     private List<ValidatorScheduleConsult> validators;
+
+    @Autowired
+    private List<ValidatorCancellationConsult> cancellationValidate;
 
     public DataDetailedConsult toSchedule(ConsultSchedulingData datas){
         if(!patientRepository.existsById(datas.idPatient())){
@@ -61,6 +65,8 @@ public class ConsultSchedule {
         if(!consultRepository.existsById(datas.idConsult())){
             throw new IdValidationException("Consult ID entered does not exist!");
         }
+
+        cancellationValidate.forEach(v -> v.validate(datas));
 
         var consult = consultRepository.getReferenceById(datas.idConsult());
         consult.cancel(datas.motive());

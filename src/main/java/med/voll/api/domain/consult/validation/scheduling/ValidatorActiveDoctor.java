@@ -1,4 +1,4 @@
-package med.voll.api.domain.consult.validation;
+package med.voll.api.domain.consult.validation.scheduling;
 
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultSchedulingData;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ActiveDoctorValidator implements ValidatorScheduleConsult {
+public class ValidatorActiveDoctor implements ValidatorScheduleConsult {
 
     @Autowired
     private DoctorRepository repository;

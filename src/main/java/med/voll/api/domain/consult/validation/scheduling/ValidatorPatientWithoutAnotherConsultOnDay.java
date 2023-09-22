@@ -1,4 +1,4 @@
-package med.voll.api.domain.consult.validation;
+package med.voll.api.domain.consult.validation.scheduling;
 
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultRepository;

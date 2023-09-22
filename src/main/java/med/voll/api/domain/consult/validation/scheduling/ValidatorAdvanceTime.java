@@ -1,4 +1,4 @@
-package med.voll.api.domain.consult.validation;
+package med.voll.api.domain.consult.validation.scheduling;
 
 import med.voll.api.domain.IdValidationException;
 import med.voll.api.domain.consult.ConsultSchedulingData;
@@ -8,8 +8,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 ///validação consulta deve ser agendada com 30 minutos de antecedência
-@Component
-public class AdvanceTimeValidator implements ValidatorScheduleConsult {
+@Component("ValidatorAdvanceTimeSchedule")
+public class ValidatorAdvanceTime implements ValidatorScheduleConsult {
 
     public void validate(ConsultSchedulingData datas){
         var dateConsult = datas.date();
