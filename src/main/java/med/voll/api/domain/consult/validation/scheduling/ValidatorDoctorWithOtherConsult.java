@@ -13,8 +13,8 @@ public class ValidatorDoctorWithOtherConsult implements ValidatorScheduleConsult
     private ConsultRepository repository;
 
     public void validate(ConsultSchedulingData datas){
-        var doctorHasAnotherConsultAtTheSameTime = repository.existsByDoctorIdAndDate(datas.idDoctor(),datas.date());
-        if(doctorHasAnotherConsultAtTheSameTime){
+        var doctorHasAnotherConsultAtTheSameTime = repository.existsByDoctorIdAndDateAndCancelMotiveIsNull(datas.idDoctor(), datas.date());
+        if (doctorHasAnotherConsultAtTheSameTime){
             throw new IdValidationException("The doctor already has another consult scheduled at the same time.");
         }
     }

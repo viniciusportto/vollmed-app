@@ -22,13 +22,13 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 select c.doctor.id from Consult c
                 where
                 c.date = :date
-            and
+                and
                 c.cancelMotive is null
             )
             order by rand()
             limit 1
             """)
-    Doctor ChooseRandomDoctorAvailable(Specialty specialty, LocalDateTime date);
+    Doctor chooseRandomDoctorAvailable(Specialty specialty, LocalDateTime date);
 
     @Query("""
            select d.active

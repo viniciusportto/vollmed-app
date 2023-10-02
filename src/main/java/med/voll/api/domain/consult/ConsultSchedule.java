@@ -58,7 +58,7 @@ public class ConsultSchedule {
         if(datas.specialty() == null){
             throw new IdValidationException("Specialty is mandatory when a doctor is not chosen!");
         }
-        return doctorRepository.ChooseRandomDoctorAvailable(datas.specialty(),datas.date());
+        return doctorRepository.chooseRandomDoctorAvailable(datas.specialty(),datas.date());
     }
 
     public void cancel(DatasConsultCancel datas){
