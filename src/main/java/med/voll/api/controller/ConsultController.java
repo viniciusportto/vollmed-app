@@ -20,7 +20,7 @@ public class ConsultController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity schedule(@RequestBody @Valid ConsultSchedulingData datas){
+        public ResponseEntity schedule(@RequestBody @Valid ConsultSchedulingData datas){
         var dto = schedule.toSchedule(datas);
         return ResponseEntity.ok(dto);
     }
