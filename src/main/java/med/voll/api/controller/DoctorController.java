@@ -26,13 +26,13 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<datasDetailingDoctor> register(@RequestBody @Valid RegisterDoctorData datas, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DatasDetailingDoctor> register(@RequestBody @Valid RegisterDoctorData datas, UriComponentsBuilder uriBuilder) {
         var doctor = new Doctor(datas);
         repository.save(doctor);
 
         var uri = uriBuilder.path("/doctors/{id}").buildAndExpand(doctor.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new datasDetailingDoctor(doctor));
+        return ResponseEntity.created(uri).body(new DatasDetailingDoctor(doctor));
 
     }
     //created get method and list of doctors
@@ -44,11 +44,11 @@ public class DoctorController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<datasDetailingDoctor> update(@RequestBody @Valid DataUpdateDoctor datas) {
+    public ResponseEntity<DatasDetailingDoctor> update(@RequestBody @Valid DataUpdateDoctor datas) {
         var doctor = repository.getReferenceById(datas.id());
         doctor.updateInformations(datas);
 
-        return ResponseEntity.ok(new datasDetailingDoctor(doctor));
+        return ResponseEntity.ok(new DatasDetailingDoctor(doctor));
     }
 
     @DeleteMapping("/{id}")
@@ -61,8 +61,8 @@ public class DoctorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<datasDetailingDoctor> detail(@PathVariable Long id) {
+    public ResponseEntity<DatasDetailingDoctor> detail(@PathVariable Long id) {
         var doctor = repository.getReferenceById(id);
-        return ResponseEntity.ok(new datasDetailingDoctor(doctor));
+        return ResponseEntity.ok(new DatasDetailingDoctor(doctor));
     }
 }
